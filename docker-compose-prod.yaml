@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  time-travel-site:
+    restart: always
+    build:
+      dockerfile: Dockerfile
+    networks:
+      - claes-work
+  time-travel-strapi:
+    image: strapi/strapi:3.6-alpine
+    networks:
+      - claes-work
+    volumes:
+      - vstrapi:/srv/app
+
+networks:
+  claes-work:
+    external: true
+
+volumes:
+  vstrapi:

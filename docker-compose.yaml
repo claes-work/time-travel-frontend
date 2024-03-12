@@ -1,0 +1,21 @@
+version: "3"
+
+
+# for test serving of build output, does not contain a working backend
+services:
+  time-travel-site:
+    restart: always
+    build:
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+  time-travel-strapi:
+    image: strapi/strapi:3.6-alpine
+    volumes:
+      - vstrapi:/srv/app
+    ports:
+      - 1337:1337
+
+
+volumes:
+  vstrapi:
